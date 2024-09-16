@@ -1,7 +1,6 @@
 import Foundation
 
 func solution(_ num_list:[Int]) -> [Int] {
-    var result:[Int] = []
     var evenCount = 0
     var oddCount = 0
     for num in num_list {
@@ -11,7 +10,5 @@ func solution(_ num_list:[Int]) -> [Int] {
             oddCount += 1
         }
     }
-    result.append(evenCount)
-    result.append(oddCount)
-    return result
+    return [evenCount, oddCount]
 }
