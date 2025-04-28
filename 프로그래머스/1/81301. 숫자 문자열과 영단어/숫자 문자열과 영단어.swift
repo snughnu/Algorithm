@@ -1,67 +1,80 @@
-import Foundation
-
-func solution(_ s: String) -> Int {
-    var char = Array(s)
+func solution1(_ s: String) -> Int {
+    var result: String = ""
+    let arrayS = Array(s)
     var i = 0
-    
-    while i < char.count {
-        //0
-        if char[i] == "z" {
-            char[i] = "0"
-            char.removeSubrange(i+1...i+3)
-        }
-        //1
-        else if char[i] == "o" {
-            char[i] = "1"
-            char.removeSubrange(i+1...i+2)
-        }
-        //2, 3
-        else if char[i] == "t" {
-            if char[i+1] == "w" {
-                char[i] = "2"
-                char.removeSubrange(i+1...i+2)
+
+    while i < arrayS.count {
+        if arrayS[i] == "z" { 
+            result.append("0")
+            i += 4
+        } else if arrayS[i] == "o" {
+            result.append("1")
+            i += 3
+        } else if arrayS[i] == "t" {
+            if arrayS[i+1] == "w" {
+                result.append("2")
+                i += 3
             } else {
-                char[i] = "3"
-                char.removeSubrange(i+1...i+4)
+                result.append("3")
+                i += 5
             }
-        }
-        //4, 5
-        else if char[i] == "f" {
-            if char[i+1] == "o" {
-                char[i] = "4"
-                char.removeSubrange(i+1...i+3)
+        } else if arrayS[i] == "f" {
+            if arrayS[i+1] == "o" {
+                result.append("4")
+                i += 4
             } else {
-                char[i] = "5"
-                char.removeSubrange(i+1...i+3)
+                result.append("5")
+                i += 5
             }
-        }
-        //6, 7
-        else if char[i] == "s" {
-            if char[i+1] == "i" {
-                char[i] = "6"
-                char.removeSubrange(i+1...i+2)
+        } else if arrayS[i] == "s" {
+            if arrayS[i+1] == "i" {
+                result.append("6")
+                i += 3
             } else {
-                char[i] = "7"
-                char.removeSubrange(i+1...i+4)
+                result.append("7")
+                i += 5
             }
-        }
-        //8
-        else if char[i] == "e" {
-            char[i] = "8"
-            char.removeSubrange(i+1...i+4)
-        }
-        //9
-        else if char[i] == "n" {
-            char[i] = "9"
-            char.removeSubrange(i+1...i+3)
-        }
-        else {
+        } else if arrayS[i] == "e" {
+            result.append("8")
+            i += 5
+        } else if arrayS[i] == "n" {
+            result.append("9")
+            i += 4
+        } else {
+            result.append(arrayS[i])
             i += 1
         }
+    }    
+    return Int(result)!
+}
+
+func solution(_ s: String) -> Int {
+    let numDict: [String: String] = [
+        "zero": "0",
+        "one": "1",
+        "two": "2",
+        "three": "3",
+        "four": "4",
+        "five": "5",
+        "six": "6",
+        "seven": "7",
+        "eight": "8",
+        "nine": "9"
+    ]
+    var result: String = ""
+    var temp: String = ""
+
+    for c in s {
+        if c.isNumber {
+            result.append(c)
+        } else {
+            temp.append(c)
+            if let number = numDict[temp] {
+                result.append(number)
+                temp = ""
+            }
+        }
     }
-    if let result = Int(String(char)) {
-        return result
-    } else {
-        return 0
-    }
+
+    return Int(result)!
 }
