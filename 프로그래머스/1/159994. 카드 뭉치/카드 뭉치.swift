@@ -1,16 +1,11 @@
-import Foundation
-
 func solution(_ cards1: [String], _ cards2: [String], _ goal: [String]) -> String {
-    
-    var i = 0, j = 0
-    for card in goal {
-        
-        if i < cards1.count && card == cards1[i] {
-            i += 1
-        } else if j < cards2.count && card == cards2[j] {
-            j += 1
-        } else { return "No" }
-    
+    var cards1Index: Int = 0
+    var cards2Index: Int = 0
+
+    for s in goal {
+        if cards1Index < cards1.count && s == cards1[cards1Index] { cards1Index += 1 }
+        else if cards2Index < cards2.count && s == cards2[cards2Index] { cards2Index += 1 }
+        else { return "No" }
     }
     return "Yes"
 }
