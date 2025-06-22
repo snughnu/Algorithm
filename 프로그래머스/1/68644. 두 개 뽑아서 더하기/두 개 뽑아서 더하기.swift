@@ -1,14 +1,11 @@
-import Foundation
-
 func solution(_ numbers: [Int]) -> [Int] {
-    var sumSet: Set<Int> = []
-
-    for i in (0..<numbers.count) {
+    var result: [Int] = []
+    for i in (0..<numbers.count-1) {
         for j in (i+1..<numbers.count) {
-            let sum = numbers[i] + numbers[j]
-            sumSet.insert(sum)
+            let sum: Int = numbers[i] + numbers[j]
+            result.append(sum)
         }
     }
 
-    return Array(sumSet).sorted()
+    return Set(result).sorted(by: <)
 }
